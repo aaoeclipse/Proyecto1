@@ -11,15 +11,18 @@ public class PostgreSQLJDBC {
 					.getConnection("jdbc:postgresql://localhost:5432/First",
 							"postgres", "");
 			System.out.println("Opened database successfully");
-			/*
+			
 			stmt = c.createStatement();
-			String sql = "DROP TABLE COMPANY";
-			stmt.executeUpdate(sql);
-			stmt.close();
-			c.close(); */
+			String sql = "CREATE TABLE COMPANY " +
+                      "(ID INT PRIMARY KEY     NOT NULL," +
+                      " NAME           TEXT    NOT NULL, " +
+                      " AGE            INT     NOT NULL, " +
+                      " ADDRESS        CHAR(50), " +
+                      " SALARY         REAL)";
 		} catch (Exception e) {
-			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-	        System.exit(0);
+			e.printStackTrace();
+			System.err.println(e.getClass().getName()+": "+e.getMessage());
+			System.exit(0);
 		}
 
 	}
