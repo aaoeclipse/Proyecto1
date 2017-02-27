@@ -30,6 +30,7 @@ public class implementCommands implements CommandsSQL{
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 			return false;
 		}
+		
 		return true;
 	}
 	public boolean CREATETABLE (String name){
@@ -58,17 +59,11 @@ public class implementCommands implements CommandsSQL{
 			c = DriverManager
 					.getConnection("jdbc:postgresql://localhost:5432/First",
 							"postgres", "");
-			System.out.println("Opened database successfully");
-			/*
-			stmt = c.createStatement();
-			String sql = "DROP TABLE COMPANY";
-			stmt.executeUpdate(sql);
-			stmt.close();
-			c.close(); */
 		} catch (Exception e) {
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 	        return false;
 		}
+		System.out.println("connection successful");
 		return true;
 	}
 
