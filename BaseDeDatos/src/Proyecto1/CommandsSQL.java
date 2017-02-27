@@ -1,6 +1,9 @@
 package Proyecto1;
 
 public interface CommandsSQL {
-	public String SELECT();
-	public void DROP();
+	public boolean Connect();
+	public String SELECT(String name);
+	public boolean DROP(String name);
+	public boolean CREATETABLE (String name);
+	public String CREATEDB(String name);
 }
