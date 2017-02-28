@@ -5,17 +5,24 @@ public class implementCommands implements CommandsSQL{
 	Connection c = null;
 	Statement statement = null;
 	String sql = null;
+	String output = null;
 	
-	@Override
-	public String SELECT(String name) {
-		/**
-		stmt = c.createStatement();
-		String sql = "DROP TABLE COMPANY";
-		stmt.executeUpdate(sql);
-		stmt.close();
-		c.close(); 
-		**/
-		return null;
+	public boolean SELECT(String select, String fromTable) {
+		try {
+			statement = c.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT " + select + " FROM "+ fromTable);
+			while (rs.next()) {
+				  output = rs.getString(select);
+				  System.out.println(output);
+				}
+			statement.close();
+			c.close(); 
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -53,12 +60,14 @@ public class implementCommands implements CommandsSQL{
 	}
 
 	@Override
-	public boolean Connect() {
+	public boolean Connect(String username, String password) {
 		try {
+			if (password == null)
+				password = "";
 			Class.forName("org.postgresql.Driver");
 			c = DriverManager
 					.getConnection("jdbc:postgresql://localhost:5432/First",
-							"postgres", "");
+							username, password);
 		} catch (Exception e) {
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 	        return false;
