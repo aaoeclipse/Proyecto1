@@ -66,13 +66,27 @@ public class implementCommands implements CommandsSQL{
 				password = "";
 			Class.forName("org.postgresql.Driver");
 			c = DriverManager
-					.getConnection("jdbc:postgresql://localhost:5432/First",
+					.getConnection("jdbc:postgresql://localhost:5432/ropa",
 							username, password);
 		} catch (Exception e) {
 			System.err.println( e.getClass().getName()+": "+ e.getMessage() );
 	        return false;
 		}
 		System.out.println("connection successful");
+		return true;
+	}
+
+	@Override
+	public boolean INSERTINTO(String name) {
+		try {
+			statement = c.createStatement();
+			sql = "DROP TABLE "+name;
+			statement.executeUpdate(sql);
+			statement.close();
+			c.close(); 
+		} catch (SQLException e) {
+			return false;
+		}
 		return true;
 	}
 

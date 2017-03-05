@@ -5,5 +5,6 @@ public interface CommandsSQL {
 	public boolean SELECT(String select,String fromTable);
 	public boolean DROP(String name);
 	public boolean CREATETABLE (String name);
+	public boolean INSERTINTO (String name);
 	public String CREATEDB(String name);
 }
